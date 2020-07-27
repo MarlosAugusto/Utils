@@ -1,10 +1,10 @@
-## [install WSL 2](https://docs.microsoft.com/pt-br/windows/wsl/install-win10) - *if necessary*
+## 1. [install WSL 2](https://docs.microsoft.com/pt-br/windows/wsl/install-win10) - *if necessary*
 
 
-## [install Android Studio](https://developer.android.com/studio) and set the environment variables - *if necessary*
+## 2. [install Android Studio](https://developer.android.com/studio) and set the environment variables - *if necessary*
 
 
-## install JDK - *on WSL2*
+## 3. install JDK - *on WSL2*
 - `sudo add-apt-repository ppa:openjdk-r/ppa`
 - `sudo apt-get update`
 - `sudo apt-get install openjdk-8-jdk`
@@ -12,16 +12,16 @@
 - *o validate run `java -version`*
 
 
-## install React Native Cli - *on WSL2*
+## 4. install React Native Cli - *on WSL2*
 - `npm install -g react-native-cli`
 - *to validate run `react-native -v`*
 
-## [download command line tools for linux](https://developer.android.com/studio) and extract in home dir - *on WSL2*
+## 5. [download command line tools for linux](https://developer.android.com/studio) and extract in home dir - *on WSL2*
 - `mkdir -p ~/Android/cmdline-tools`
 - `sudo apt install unzip`- *if necessary*
 - `unzip commandlinetools-linux-XXXXX_latest -d ~/Android/cmdline-tools`
 
-## set environment variables in config file: home/*(.bashrc | .bash_profile | .profile | .zshrc)* - *on WSL2*
+## 6. set environment variables in config file: home/*(.bashrc | .bash_profile | .profile | .zshrc)* - *on WSL2*
 ```
 JAVA_HOME=$(dirname $( readlink -f $(which java) ))
 JAVA_HOME=$(realpath "$JAVA_HOME"/../)
@@ -36,32 +36,39 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools:$PATH
 - restart the terminal or update the `.zshrc` file
 - run `sdkmanager "platform-tools"` to init configs
 
-## Enable adb server access from WSL2
+## 7. Enable adb server access from WSL2
 - in config file:
 ```
 export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
 export ADB_SERVER_SOCKET=tcp:$WSL_HOST:5037
 ```
-- or if it doesn't work with that:
+- if it doesn't work with that:
 install (`sudo apt-get install socat`)
-and run `socat -d -d TCP-LISTEN:5037,reuseaddr,fork TCP:$(cat /etc/resolv.conf | tail -n1 | cut -d " " -f 2):5037`
+and run with 9° item `socat -d -d TCP-LISTEN:5037,reuseaddr,fork TCP:$(cat /etc/resolv.conf | tail -n1 | cut -d " " -f 2):5037`
 
-## Enable metro bundler access on Windows - *in PowerShell(admin mode)*
+## 8. Enable metro bundler access on Windows - *in PowerShell(admin mode)*
 ```
 iex "netsh interface portproxy delete v4tov4 listenport=8081 listenaddress=127.0.0.1" | out-null;
-$WSL_CLIENT = bash.exe -c "ifconfig eth0 | grep 'inet '";
+$WSL_CLIENT = bash.exe -c "ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'";
 $WSL_CLIENT -match '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
 $WSL_CLIENT = $matches[0];
 iex "netsh interface portproxy add v4tov4 listenport=8081 listenaddress=127.0.0.1 connectport=8081 connectaddress=$WSL_CLIENT"
 ```
 
-## start server in Windows
+## 9. start server in Windows
 - PowerShell:
 ```
 adb kill-server
 adb -a nodaemon server start
 ```
 - or WSL2:
+if error on 7° item:
+```
+adb.exe kill-server
+socat -d -d TCP-LISTEN:5037,reuseaddr,fork TCP:$(cat /etc/resolv.conf | tail -n1 | cut -d " " -f 2):5037
+adb.exe -a nodaemon server start
+```
+else:
 ```
 adb.exe kill-server
 adb.exe -a nodaemon server start
