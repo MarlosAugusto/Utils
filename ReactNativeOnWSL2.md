@@ -66,6 +66,9 @@ if error on 7° item:
 ```
 adb.exe kill-server
 socat -d -d TCP-LISTEN:5037,reuseaddr,fork TCP:$(cat /etc/resolv.conf | tail -n1 | cut -d " " -f 2):5037
+```
+
+```
 adb.exe -a nodaemon server start
 ```
 else:
