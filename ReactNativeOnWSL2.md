@@ -56,12 +56,12 @@ iex "netsh interface portproxy add v4tov4 listenport=8081 listenaddress=127.0.0.
 ```
 
 ## 9. start server in Windows
-- PowerShell:
+- ##### PowerShell:
 ```
 adb kill-server
 adb -a nodaemon server start
 ```
-- or WSL2:
+- ##### or WSL2:
 if error on 7° item:
 ```
 adb.exe kill-server
