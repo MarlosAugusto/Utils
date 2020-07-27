@@ -56,26 +56,16 @@ iex "netsh interface portproxy add v4tov4 listenport=8081 listenaddress=127.0.0.
 ```
 
 ## 9. start server in Windows
-- ##### PowerShell:
+##### PowerShell:
 ```
 adb kill-server
 adb -a nodaemon server start
 ```
-- ##### or WSL2:
-if error on 7° item:
+##### if error on 7° item WSL2:
 ```
-adb.exe kill-server
 socat -d -d TCP-LISTEN:5037,reuseaddr,fork TCP:$(cat /etc/resolv.conf | tail -n1 | cut -d " " -f 2):5037
 ```
 
-```
-adb.exe -a nodaemon server start
-```
-else:
-```
-adb.exe kill-server
-adb.exe -a nodaemon server start
-```
 
 ## run - in WSL2
 - create react native project or navigate to exists project:
