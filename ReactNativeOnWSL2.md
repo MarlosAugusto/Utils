@@ -12,7 +12,7 @@
 - *o validate run `java -version`*
 
 
-## install React Native Cli
+## install React Native Cli - *on WSL2*
 - `npm install -g react-native-cli`
 - *to validate run `react-native -v`*
 
