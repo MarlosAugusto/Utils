@@ -82,6 +82,7 @@ npx react-native start
 ```
 npx react-native run-android --deviceId emulator-5554
 ```
+- if error to connect metro bundler: *run 8° item*
 
 ## references
 - [Configurando projeto React Native usando o Windows WSL2](https://medium.com/@rafaelnogueira/configurando-projeto-react-native-usando-o-windows-wsl2-1ce9efec02c1)
