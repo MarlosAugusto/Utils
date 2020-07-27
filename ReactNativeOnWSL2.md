@@ -69,9 +69,7 @@ socat -d -d TCP-LISTEN:5037,reuseaddr,fork TCP:$(cat /etc/resolv.conf | tail -n1
 
 ## run - in WSL2
 - create react native project or navigate to exists project:
-```
-npx react-native init <projectName>` | `cd <projectName>
-```
+`npx react-native init <projectName>` | `cd <projectName>`
 - start the emulator (if not exists create on AndroidStudio):
 ```
 emulator.exe @EMULATOR_NAME
