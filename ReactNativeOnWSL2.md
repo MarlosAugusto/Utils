@@ -56,12 +56,12 @@ iex "netsh interface portproxy add v4tov4 listenport=8081 listenaddress=127.0.0.
 ```
 
 ## 9. start server in Windows
-##### PowerShell(admin):
+##### PowerShell:
 ```
 adb kill-server
 adb -a nodaemon server start
 ```
-##### if error on 7° item WSL2:
+##### if error on 7th item WSL2:
 ```
 socat -d -d TCP-LISTEN:5037,reuseaddr,fork TCP:$(cat /etc/resolv.conf | tail -n1 | cut -d " " -f 2):5037
 ```
@@ -70,12 +70,12 @@ socat -d -d TCP-LISTEN:5037,reuseaddr,fork TCP:$(cat /etc/resolv.conf | tail -n1
 ## run - in WSL2
 - create react native project or navigate to exists project:
 `npx react-native init <projectName>` | `cd <projectName>`
-- execute 9° item
+- perform items 8 and 9
 - start the emulator (if not exists create on AndroidStudio):
 ```
 emulator.exe @EMULATOR_NAME
 ```
-- start metro server:
+- start metro server(or project script "start"):
 ```
 npx react-native start
 ```
