@@ -1,0 +1,33 @@
+# init kubernetes:
+# cd && sudo swapoff -a && sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+# kubectl taint nodes --all node-role.kubernetes.io/master-
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+kubectl apply -f ./rabbitmq-persistence-volume.yaml
+kubectl apply -f ./rabbitmq-persistence-claim.yaml
+
+kubectl delete secret pop-certificates-qa --namespace=default | true
+
+kubectl create secret generic pop-certificates-qa \
+    --from-file=ca.crt=./certificates/aCaCertificate.cer \
+    --from-file=tls.crt=./certificates/aCertificate.cer \
+    --from-file=tls.key=./certificates/aKey.key
+
+helm upgrade rabbitmq-pop bitnami/rabbitmq \
+    --set auth.username=pop \
+    --set auth.password=oPopNaoPoupaNinguem \
+    --set auth.erlangCookie=meusOvo \
+    --set auth.tls.enabled=true \
+    --set auth.tls.existingSecret=pop-certificates-qa \
+    --set service.type=NodePort \
+    --set ingress.enabled=true \
+    --set ingress.hostname=local.rabbitmq.pop \
+    --set ingress.tls=true \
+    --set persistence.enabled=true \
+    --set persistence.storageClass=manual \
+    --set persistence.existingClaim=rabbitmq-pv-claim \
+    --set volumePermissions.enabled=true \
+    --version=8.9.2 \
+    --namespace=default --install
