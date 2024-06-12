@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+cd ~\/Projects\/todo-path # change the path here
+tmux new-session -d -s todo # change the session name
+tmux send-keys -t todo "docker-compose up" ENTER # run an command in first pane
+tmux split-window -v -t todo # create a empty pane vertical
+tmux select-pane -t todo:0.0 # select the first pane
+tmux split-window -h -t todo # create a pane horizontal
+tmux send-keys -t todo "bin/dev" ENTER # run an command in second pane
+tmux select-pane -t todo:0.2 # select the emppty pane
+tmux attach -t todo # attach to the session
