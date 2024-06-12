@@ -124,6 +124,10 @@ alias :C=':c'
 
 alias pg='cd ~/Projects/playground'
 
+alias runTodo='runTodo() {
+    exec ~/./runTodo
+};runTodo;'
+
 # docker
 # alias dkStart='sudo service docker start'
 # alias dkStop='sudo service docker stop'
