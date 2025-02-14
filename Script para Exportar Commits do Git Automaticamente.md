@@ -29,8 +29,10 @@ if [ -z "$1" ]; then
   elif [[ $(date -d "$LAST_BUSINESS_DAY" +%u) -eq 7 ]]; then
     LAST_BUSINESS_DAY=$(date -d "3 days ago" +%Y-%m-%d)
   fi
+  SLEEPTIME=180 # 3 minutos 
   DATE="$LAST_BUSINESS_DAY"
 else
+  SLEEPTIME=5 # 5 segundos 
   DATE="$1"
 fi
 
@@ -45,6 +47,7 @@ git log --no-merges --author="$(git config user.name)" --since="$DATE 00:00" --u
 sed -e "s/\bfeat\b/Novo/" -e "s/\brefactor\b/Refatoração\/Melhoria/" | \
 trans -b -s en -t pt | sed "s/^/- /" >> "$FILE"
 
+sleep $SLEEPTIME
 echo "Commits exportados para $FILE"
 
 # Exibir notificação
