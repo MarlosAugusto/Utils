@@ -65,7 +65,7 @@ echo "Commits exportados para $FILE"
 notify-send "Commits exportados" "O arquivo $FILE foi gerado com sucesso."
 
 # Perguntar ao usuário se deseja abrir o arquivo no VS Code
-zenity --question --text="O arquivo de commits foi gerado.\nDeseja abri-lo no VS Code?" --width=300
+zenity --info  --title="O arquivo de commits para o dia $DATE foi gerado." --text="Deseja abri-lo no VS Code?" --width=320
 if [ $? -eq 0 ]; then
   /usr/bin/code "$FILE"
 fi
