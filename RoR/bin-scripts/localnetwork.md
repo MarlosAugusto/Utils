@@ -1,4 +1,4 @@
-# Script `localnetwork`
+# 📱 Script `bin/localnetwork` para Ruby on Rails
 O script `bin/localnetwork` tem como função exibir o endereço IP local da máquina que pode ser acessado pela rede local. Ele também garante que o processo continue rodando para evitar que o Foreman o finalize.
 
 ### Conteúdo do `bin/localnetwork`:
