@@ -40,12 +40,23 @@ FILE="$HOME/git_project/commits-$DATE.txt"
 cd "$HOME/git_project"
 
 echo "Original" > "$FILE"
-git log --no-merges --author="$(git config user.name)" --since="$DATE 00:00" --until="$DATE 23:59" --oneline --pretty=format:"%s" | tac | sed "s/^/- /" >> "$FILE"
-
-echo -e "\n--------\nTranslated" >> "$FILE"
 git log --no-merges --author="$(git config user.name)" --since="$DATE 00:00" --until="$DATE 23:59" --oneline --pretty=format:"%s" | tac | \
-sed -e "s/\bfeat\b/Novo/" -e "s/\brefactor\b/Refatoração\/Melhoria/" | \
-trans -b -s en -t pt | sed "s/^/- /" >> "$FILE"
+  sed -e "s/feat:/\n- feat:/" | \
+  sed -e "s/refactor:/\n- refactor:/" | \
+  sed -e "s/chore:/\n- chore:/" | \
+  sed -e "s/style:/\n- style:/" | \
+  sed -e "s/test:/\n- test:/" | \
+  sed "/^$/d" >> $FILE
+
+echo -e "\n--------\nTranslated" >> $FILE
+git log --no-merges --author="$(git config user.name)" --since="$DATE 00:00" --until="$DATE 23:59" --oneline --pretty=format:"%s" | tac | \
+  sed -e "s/feat:/\n- Novo:/" | \
+  sed -e "s/refactor:/\n- Refatoração\/Melhoria:/" | \
+  sed -e "s/chore:/\n- Config\/CORE:/" | \
+  sed -e "s/style:/\n- Estilos:/" | \
+  sed -e "s/test:/\n- Testes:/" | \
+  sed "/^$/d" | \
+  trans -b -s en -t pt >> $FILE
 
 sleep $SLEEPTIME
 echo "Commits exportados para $FILE"
