@@ -2,6 +2,8 @@
 
 Este guia descreve o processo de configuração de um script que gera um arquivo contendo os commits feitos pelo usuário em uma determinada data e oferece a opção de abri-lo no VS Code.
 
+![image](https://github.com/user-attachments/assets/fbd79329-3521-496f-9c01-972bec3b210b)
+
 ---
 
 ## 📌 1. Instalar Dependências Necessárias
