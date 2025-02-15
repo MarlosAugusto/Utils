@@ -1,4 +1,4 @@
-# Script pre-push para Projeto Ruby on Rails
+# 🧐 Script pre-push para Ruby on Rails
 Este arquivo descreve o funcionamento do script `pre-push` utilizado em nosso projeto Ruby on Rails. O script é executado automaticamente sempre que um `git push` é realizado, e seu objetivo é garantir que o código esteja livre de erros e siga as boas práticas antes de ser enviado para o repositório remoto.
 
 ## Outputs
