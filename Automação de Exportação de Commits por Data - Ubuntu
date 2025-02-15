@@ -1,4 +1,4 @@
-# 🧵 Automação de Exportação de Commits por Data
+# 🧵 Automação de Exportação de Commits por Data - Ubuntu
 
 Este guia descreve o processo de configuração de um script que gera um arquivo contendo os commits feitos pelo usuário em uma determinada data e oferece a opção de abri-lo no VS Code.
 
