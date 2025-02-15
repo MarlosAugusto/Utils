@@ -1,7 +1,7 @@
 # Utils
 
 > Git
-> - [🧵 Automação de Exportação de Commits por Data - Ubuntu](https://github.com/MarlosAugusto/Utils/blob/master/Script%20para%20Exportar%20Commits%20do%20Git%20Automaticamente.md)
+> - [🧵 Automação de Exportação de Commits por Data - Ubuntu](https://github.com/MarlosAugusto/Utils/blob/master/Automa%C3%A7%C3%A3o%20de%20Exporta%C3%A7%C3%A3o%20de%20Commits%20por%20Data%20-%20Ubuntu.md)
 
 > RoR
 > - [📱 Script bin/localnetwork para Ruby on Rails](https://github.com/MarlosAugusto/Utils/blob/master/RoR/bin-scripts/localnetwork.md)
