@@ -1,4 +1,4 @@
-# Gerenciamento de Processos com `bin/manage_pids`
+# 🏗️ Gerenciamento de Processos com `bin/manage_pids` para Ruby on Rails
 
 O script `bin/manage_pids` é utilizado para gerenciar os processos definidos no `Procfile.dev`. Ele permite visualizar os processos em execução, encerrar processos individuais ou finalizar todos os processos de uma vez.
 
